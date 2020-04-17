@@ -1,0 +1,46 @@
+<h1>Articles</h1>
+
+<div>
+  <ul>
+    <li>
+      <%= link_to  "/index", root_path %>
+    </li>
+  </ul>
+</div>
+
+<% if @articles.length === 1 %>
+<p>There is <%= @articles.length  %> article</p>
+<% elsif @articles.length > 1 %>
+<p>There are <%= @articles.length  %> articles</p>
+<% else %>
+<p>There are no articles</p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.id %></td>
+      <td><%= article.title %></td>
+      <td><%= article.description %></td>
+      <td>
+        <%= link_to 'Show', article_path(article) %>
+        <%= link_to 'Edit', edit_article_path(article) %>
+        <%= link_to 'Destroy', article_path(article), method: :delete, data: {
+          confirm: "Are you sure you wan't to delete this article?"
+        } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Create new article', new_article_path() %></p>
