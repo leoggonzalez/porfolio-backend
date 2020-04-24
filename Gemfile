@@ -43,7 +43,7 @@ group :development do
 end
 
 group :production do
-  gem 'pq'
+  gem 'pg'
 end
 
 group :test do
